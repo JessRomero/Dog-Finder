@@ -3,11 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
+//load the 'secrets' in the .env file
 require('dotenv').config();
+// connect to the database with Mongoose
+require('./config/database');
+require('./config/passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var dogsRouter = require('./routes/dogs');
+var commentsRouter = require('./routes/comments')
+var activitiesRouter = require('./routes/activities');
+var passport = require('passport');
+var methodOverride = require('method-override');
 
 var app = express();
 
@@ -19,10 +27,28 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/dogs', dogsRouter);
+app.use('/', commentsRouter)
+app.use('/', activitiesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

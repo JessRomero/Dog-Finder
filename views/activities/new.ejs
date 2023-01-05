@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<div>XXXXXXXX</div>
+<section id="badge-container">
+  <% activities.forEach(function(a) { %>
+    <article class="badge"><%= a.name %></article>
+  <% }) %>
+</section>
+
+<form id="add-activity-form" action="/activities" method="POST">
+  <label>Activity:</label>
+  <input type="text" name="activity">
+  <input type="submit" value="Add Activity">
+</form>
+
+<%- include('../partials/footer') %>

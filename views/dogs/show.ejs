@@ -1,0 +1,86 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Breed: </div>
+  <div><%= dog.breed %></div>
+  <div>Lifespan: </div>
+  <div><%= dog.lifespan %></div>
+  <div>Color: </div>
+  <div><%= dog.color %></div>
+  <div>Select this Breed: </div>
+  <div><%= dog.selectBreed ? 'Yes' : 'No' %></div>
+  <!-- start cast list -->
+  <div>Breed:</div>
+  <ul>
+    <%- dog.breed.map(b =>
+      `<li>${b.name}</li>`
+    ).join('') %>
+  </ul>
+  <!-- end cast list -->
+</section>
+<!-- add to cast form below this comment -->
+<form id="add-to-breed" action="/dogs/<%= dog._id %>/activities" method="POST">
+  <select name="activityId">
+    <%- activities.map(b =>
+      `<option value="${b._id}">${b.name}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add to Breed</button>
+</form>
+
+<br><br>
+<% if (user) { %>
+  <h2>Comments</h2>
+    <form id="add-comment-form" method="POST" action="/dogs/<%= dog._id %>/comments">
+      <label>Comment:</label>
+        <textarea name="content"></textarea>
+      <input type="submit" value="Add Comment">
+    </form>
+<% } %>
+
+<% if (dog.comment.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %>
+      <% dog.comments.forEach(function(c) { %>
+        <tr>
+          <td class="comment-user"><img alt="avatar" src="<%= c.userAvatar %>"><%= c.userName %></td>
+          <td><%= c.createdAt.toLocaleDateString() %></td>
+          <td><%= c.content %></td>
+        
+          <th>Comment</th>
+         
+          <th></th>
+
+            <td><%= c.comment %></td>
+            
+            <td>
+              <% if (user && user._id.equals(c.user)) { %>
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                  <button type="submit">X</button>
+                </form>
+              <% } %>
+            </td>
+  
+        </tr>
+      <% }); %>
+      <tr>
+        <td colspan="3"></td>
+        <td><strong><%= (total / dog.comments.length).toFixed(1) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+  
+<% } else { %>
+  <h5>No Comments Yet</h5>
+<% } %>
+
+
+<%- include('../partials/footer') %>

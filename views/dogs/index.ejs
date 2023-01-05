@@ -1,0 +1,26 @@
+<!<%- include('../partials/header') %>
+
+  <table id="list">
+    <thead>
+      <tr>
+        <th>Breed</th>
+        <th>Lifespan</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dogs.forEach(function(d) { %>
+        <tr>
+          <td>
+            <%= d.breed %>
+          </td>
+          <td>
+            <%= d.lifespan %>
+          </td>
+          <td><a href="/dogs/<%= d._id %>">DETAILS</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+
+  <%- include('../partials/footer') %>

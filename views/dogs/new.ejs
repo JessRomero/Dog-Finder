@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+    <form id="new-form" action="/dogs" method="POST">
+        <label>Breed:</label>
+        <input type="text" name="breed">
+        <label>Lifespan:</label>
+        <input type="text" name="lifespan">
+        <label>Color</label>
+        <select name="color">
+            <option value="Black">Black</option>
+            <option value="Brown">Brown</option>
+            <option value="White">White</option>
+            <option value="Golden">Golden</option>
+            <option value="Cream">Cream</option>
+            <option value="Bicolor">Bicolor</option>
+            <option value="Tricolor">Tricolor</option>
+            <option value="Red">Red</option>
+        </select>
+        <label>Add to List:</label>
+        <input type="checkbox" name="addToList" checked>
+        <input type="submit" value="Add Dog">
+    </form>
+
+    <%- include('../partials/footer') %>

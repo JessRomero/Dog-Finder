@@ -1,10 +1,10 @@
-const dog = require('dog')
+const mongoose = require('mongoose')
 
-dog.set("strictQuery", false)
+mongoose.set("strictQuery", false)
 
-dog.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL);
 
-const db = dog.connection
+const db = mongoose.connection
 
 db.on('connected', function() {
     console.log(`Connected to MongoDB at ${db.host}:${db.port}`)
