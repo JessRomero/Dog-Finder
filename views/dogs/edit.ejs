@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+    <div>Breed: </div>
+    <div><%= dog.breed %></div>
+    <div>Lifespan (yrs): </div>
+    <div><%= dog.lifespan %></div>
+    <div>Color: </div>
+    <div><%= dog.color %></div>
+  </section>
+
+  <form id="new-form" action="/dogs/<%= dog._id %>?_method=PUT" method="POST">
+    <label>Color</label>
+    <select name="color">
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="White">White</option>
+        <option value="Golden">Golden</option>
+        <option value="Cream">Cream</option>
+        <option value="Bicolor">Bicolor</option>
+        <option value="Tricolor">Tricolor</option>
+        <option value="Red">Red</option>
+    </select>
+    <button type="submit">Change Color</button>
+</form>
+
+<%- include('../partials/footer') %>

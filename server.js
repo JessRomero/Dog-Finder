@@ -11,7 +11,6 @@ require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var dogsRouter = require('./routes/dogs');
-var commentsRouter = require('./routes/comments')
 var activitiesRouter = require('./routes/activities');
 var passport = require('passport');
 var methodOverride = require('method-override');
@@ -45,7 +44,6 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/dogs', dogsRouter);
-app.use('/', commentsRouter)
 app.use('/', activitiesRouter)
 
 

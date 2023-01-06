@@ -10,8 +10,14 @@ router.get('/new', isLoggedIn, dogsCtrl.new);
 
 router.get('/:id', dogsCtrl.show);
 
+router.get('/:id/edit', dogsCtrl.edit);
+
 router.post('/', isLoggedIn, dogsCtrl.create);
 
-router.post('/:id/activites', dogsCtrl.addToDog);
+router.post('/:id/activities', dogsCtrl.addToDog);
+
+router.put('/:id', isLoggedIn, dogsCtrl.update);
+
+router.delete('/:id', isLoggedIn, dogsCtrl.delete);
 
 module.exports = router;

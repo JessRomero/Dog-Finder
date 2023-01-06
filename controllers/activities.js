@@ -4,7 +4,6 @@ const Dog = require('../models/dog')
 module.exports = {
     new: newActivity,
     create,
-    // delete: deleteActivity
 }
 
 function create(req, res) {
@@ -22,14 +21,3 @@ function newActivity(req, res) {
     });
 }
 
-// function deleteActivity(req, res, next) {
-//     Activity.find({}, function(err, activities) {
-//       if (!activity.user.equals(req.user._id)) return res.redirect(`/dogs/${dog._id}`);
-//       activity.remove();
-//       activity.save().then(function() {
-//         res.redirect(`/dogs/${dog._id}`);
-//       }).catch(function(err) {
-//         return next(err);
-//       });
-//     });
-//   }

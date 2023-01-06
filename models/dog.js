@@ -1,15 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const commentSchema = new Schema({
-    content: {type: String, required: true},
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
-    userName: String,
-    userAvatar: String
-  }, {
-    timestamps: true
-  });
-
 const dogSchema = new Schema({
     breed: {
         type: String,
@@ -21,7 +12,6 @@ const dogSchema = new Schema({
     color: [String],
     activity: [{type: Schema.Types.ObjectId, ref: 'Activity'}],
     selectBreed: {type: Boolean, default: false},
-    comments: [commentSchema]
 }, {
     timestamps: true
 })

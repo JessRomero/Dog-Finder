@@ -3,12 +3,11 @@
 <section id="show-page">
   <div>Breed: </div>
   <div><%= dog.breed %></div>
-  <div>Lifespan: </div>
+  <div>Lifespan (yrs): </div>
   <div><%= dog.lifespan %></div>
   <div>Color: </div>
   <div><%= dog.color %></div>
-  <!-- <div>Select this Breed: </div>
-  <div><%= dog.selectBreed ? 'Yes' : 'No' %></div> -->
+ 
   <div>Activities:</div>
   <ul>
     <%- dog.activity.map(b =>
@@ -25,6 +24,13 @@
   </select>
   <button type="submit">Add to Dog</button>
 </form>
+<br></br>
+<a href="/dogs/<%= dog._id %>/edit">Edit</a>
+<br></br>
+<form id="delete-breed" action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete Dog From List</button>
+</form>
+
 
 
 <%- include('../partials/footer') %>
