@@ -11,8 +11,8 @@
   <nav>
     <a href="/dogs" <%- title === 'All Dogs' ? 'class="active"' : '' %>>ALL DOGS</a>
     <% if (user) { %>
-    <a href="/activity/new"	<%- title === 'Add Activity' ? 'class="active"' : '' %>>
-		ADD ACTIVITY</a>
+    <a href="/activities/new"	<%- title === 'Activities' ? 'class="active"' : '' %>>
+		ACTIVITIES</a>
     <a href="/dogs/new" <%- title === 'Add Dog' ? 'class="active"' : '' %>>ADD DOG</a>
     <a href="/logout">LOG OUT</a>
     <% } else { %>

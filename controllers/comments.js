@@ -6,17 +6,13 @@ module.exports = {
 }
 
 function create(req, res) {
-    // Find the movie to embed the review within
     Dog.findById(req.params.id, function(err, dog) {
   
-      // Add the user-centric info to req.body (the new review)
       req.body.user = req.user._id;
       req.body.userName = req.user.name;
       req.body.userAvatar = req.user.avatar;
   
-      // Push the subdoc for the review
       dog.comments.push(req.body);
-      // Always save the top-level document (not subdocs)
       dog.save(function(err) {
         res.redirect(`/dogs/${dog._id}`);
       });

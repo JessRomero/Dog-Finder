@@ -8,10 +8,8 @@ passport.use(new GoogleStrategy({
         clientSecret: process.env.GOOGLE_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK
     },
-    //  the verify callback  //
+
     function(accessToken, refreshToken, profile, cb) {
-        // opt 1) save a new user to our database
-        // opt 2) find an existing user from our database
         User.findOne({googleId: profile.id}, function(err, user) {
             if(user) return cb(err, user);
 
@@ -24,7 +22,6 @@ passport.use(new GoogleStrategy({
                 return cb(err, user);
             });
         });
-        // once the user is found/created - add them to a new session (login to OUR site)
     }
 ));
 

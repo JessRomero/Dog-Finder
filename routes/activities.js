@@ -5,6 +5,6 @@ const isLoggedIn = require('../config/auth')
 
 router.get('/activities/new', isLoggedIn, activitiesCtrl.new)
 router.post('/activities', activitiesCtrl.create)
-router.post('/dogs/:id/activites', activitiesCtrl.selectBreed)
+// router.delete('/activities', activitiesCtrl.delete)
 
 module.exports = router
